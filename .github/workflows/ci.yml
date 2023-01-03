@@ -31,4 +31,4 @@ jobs:
           errorMsg="::error::\
             Changed files: ${{ steps.verify-changed-files.outputs.changed_files }}\n\
             Please run 'make generate-all' locally and commit the changes"
-          echo "$errorMsg" && exit 1
+          echo -e "$errorMsg" && exit 1
