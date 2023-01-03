@@ -29,6 +29,6 @@ jobs:
         if: steps.verify-changed-files.outputs.files_changed == 'true'
         run: |
           errorMsg="::error::\
-            Changed files: ${{ steps.verify-changed-files.outputs.changed_files }}\n\
-            Please run 'make generate-all' locally and commit the changes"
+            Changed files: ${{ steps.verify-changed-files.outputs.changed_files }}\
+            \nPlease run 'make generate-all' locally and commit the changes"
           echo -e "$errorMsg" && exit 1
