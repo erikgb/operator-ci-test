@@ -152,10 +152,6 @@ type CronJobStatus struct {
 	// Information when was the last time the job was successfully scheduled.
 	// +optional
 	LastScheduleTime *metav1.Time `json:"lastScheduleTime,omitempty"`
-
-	// Foo is added to check if CI works
-	// +optional
-	Foo string `json:"foo,omitempty"`
 }
 
 /*
