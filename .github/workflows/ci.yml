@@ -28,5 +28,7 @@ jobs:
       - name: Run step only when any of the above files change.
         if: steps.verify-changed-files.outputs.files_changed == 'true'
         run: |
-          echo "Changed files: ${{ steps.verify-changed-files.outputs.changed_files }}"
-          echo "::error::Please run 'make generate-all' locally and commit the changes" && exit 1
+          errorMsg="::error::\
+            Changed files: ${{ steps.verify-changed-files.outputs.changed_files }}\n\
+            Please run 'make generate-all' locally and commit the changes"
+          echo "$errorMsg" && exit 1
