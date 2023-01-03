@@ -29,3 +29,5 @@ jobs:
         if: steps.verify-changed-files.outputs.files_changed == 'true'
         run: |
           echo "Changed files: ${{ steps.verify-changed-files.outputs.changed_files }}"
+          echo "Please run 'make generate-all' locally and commit the changes"
+          exit 1
