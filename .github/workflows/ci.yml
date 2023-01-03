@@ -9,6 +9,7 @@ permissions:
   contents: read
 jobs:
   verify-generated:
+    runs-on: ubuntu-latest
     steps:
       - name: Generate all
         run: |
