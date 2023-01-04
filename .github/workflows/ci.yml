@@ -78,9 +78,16 @@ jobs:
       - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
       - uses: AbsaOSS/k3d-action@v2
         with:
-          cluster-name: e2e-cluster
+          cluster-name: e2e
           args: >-
             --config=k3d-config.yml
       - run: |
           kubectl cluster-info
           kubectl version --output=yaml
+      - uses: jaxxstorm/action-install-gh-release@v1
+        with:
+          repo: kudobuilder/kuttl
+          tag: v0.15.0
+          cache: enable
+      - run: |
+          kubectl kuttl version
