@@ -74,6 +74,7 @@ jobs:
           kubectl version --output=yaml
       - run: |
           k3d image import --cluster e2e /tmp/controller-image.tar
+          kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.10.1/cert-manager.yaml
           make deploy
           kubectl rollout status deployment/project-controller-manager -n project-system --timeout=2m
       - uses: jaxxstorm/action-install-gh-release@v1
