@@ -84,6 +84,7 @@ jobs:
           k3d image import --cluster e2e /tmp/controller-image.tar
           kubectl apply --server-side -k config/default
       - run: |
+          kubectl get deployment.apps/project-controller-manager -n project-system -o yaml
           for w in deployment.apps/project-controller-manager; do
               kubectl rollout status $w -n project-system --timeout=10s \
               || (kubectl get events -n project-system; kubectl logs -n project-system $w --tail -1; false);
