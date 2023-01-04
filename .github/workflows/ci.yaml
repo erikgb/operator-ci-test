@@ -68,7 +68,7 @@ jobs:
         with:
           cluster-name: e2e
           args: >-
-            --config=k3d-config.yml
+            --config=k3d-config.yaml
       - run: |
           kubectl cluster-info
           kubectl version --output=yaml
