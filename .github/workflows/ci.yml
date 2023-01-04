@@ -91,3 +91,5 @@ jobs:
           cache: enable
       - run: |
           kubectl kuttl version
+      - run: |
+          kubectl kuttl test --config kuttl-test.yaml

@@ -1,0 +1,15 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  labels:
+    app.kubernetes.io/name: echo
+spec:
+  containers:
+    - ports:
+        - name: app
+          containerPort: 8080
+          protocol: TCP
+      image: docker.io/mendhak/http-https-echo
+status:
+  phase: Running
