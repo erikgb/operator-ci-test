@@ -35,7 +35,7 @@ jobs:
             Changed files: ${{ steps.verify-changed-files.outputs.changed_files }}\
             \nPlease run 'make generate-all' locally and commit the changes"
           echo -e "$errorMsg" && exit 1
-  build-image:
+  e2e-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
@@ -49,11 +49,6 @@ jobs:
           tags: controller:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
-  e2e-test:
-    needs: build-image
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
       - uses: AbsaOSS/k3d-action@v2
         with:
           cluster-name: e2e
