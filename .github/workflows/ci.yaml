@@ -73,7 +73,13 @@ jobs:
           kubectl cluster-info
           kubectl version --output=yaml
       - run: |
-          kubectl apply --server-side -f https://github.com/cert-manager/cert-manager/releases/download/v1.10.1/cert-manager.yaml
+          helm repo add jetstack https://charts.jetstack.io
+          helm install \
+            cert-manager jetstack/cert-manager \
+            --namespace cert-manager \
+            --create-namespace \
+            --version v1.10.1 \
+            --set installCRDs=true     
       - run: |
           k3d image import --cluster e2e /tmp/controller-image.tar
           kubectl apply --server-side -k config/default
