@@ -3,8 +3,8 @@ kind: Kustomization
 generatorOptions:
   disableNameSuffixHash: true
 images:
-  - name: controller
-    newName: ghcr.io/erikgb/operator-ci-test
-    newTag: 0.0.1 # x-release-please-version
+- name: controller
+  newName: ghcr.io/erikgb/operator-ci-test
+  newTag: 0.0.1 # x-release-please-version
 resources:
-  - manager.yaml
+- manager.yaml
