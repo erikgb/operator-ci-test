@@ -72,3 +72,14 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+  e2e-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
+      - uses: AbsaOSS/k3d-action@v2
+        with:
+          cluster-name: e2e-cluster
+          args: >-
+            --config=k3d-config.yml
+      - run: |
+          kubectl cluster-info
