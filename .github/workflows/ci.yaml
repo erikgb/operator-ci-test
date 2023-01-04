@@ -85,8 +85,8 @@ jobs:
           kubectl apply --server-side -k config/default
       - run: |
           for w in deployment.apps/project-controller-manager; do
-              kubectl rollout status $$w -n project-system --timeout=2m \
-              || (kubectl logs -n project-system $$w --tail -1; kubectl get events -n project-system; false);
+              kubectl rollout status $w -n project-system --timeout=2m \
+              || (kubectl logs -n project-system $w --tail -1; kubectl get events -n project-system; false);
           done
       - uses: jaxxstorm/action-install-gh-release@v1
         with:
