@@ -83,3 +83,4 @@ jobs:
             --config=k3d-config.yml
       - run: |
           kubectl cluster-info
+          kubectl version --output=yaml
