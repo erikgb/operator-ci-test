@@ -8407,6 +8407,10 @@ spec:
                   scheduled.
                 format: date-time
                 type: string
+              nextScheduleTime:
+                description: NextScheduleTime indicates the next scheduled run.
+                format: date-time
+                type: string
             type: object
         type: object
     served: true
