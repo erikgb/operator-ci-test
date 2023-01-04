@@ -5,5 +5,4 @@ image: docker.io/rancher/k3s:v1.26.0-k3s1
 options:
   k3d: # k3d runtime settings
     disableLoadbalancer: true
-    disableImageVolume: true
     disableRollback: true
