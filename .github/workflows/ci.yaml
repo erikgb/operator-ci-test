@@ -81,7 +81,7 @@ jobs:
             --version v1.10.1 \
             --set installCRDs=true     
       - run: |
-          k3d image import --cluster e2e /tmp/controller-image.tar
+          k3d image import --cluster e2e /tmp/controller-image.tar --trace --verbose
           kubectl apply --server-side -k config/default
       - run: |
           for w in deployment.apps/project-controller-manager; do
