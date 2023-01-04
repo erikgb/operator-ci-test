@@ -46,7 +46,7 @@ jobs:
         with:
           context: .
           push: false
-          tags: controller:latest
+          tags: project/controller:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
           outputs: type=docker,dest=/tmp/controller-image.tar
@@ -82,7 +82,7 @@ jobs:
             --set installCRDs=true     
       - run: |
           k3d image import --cluster e2e /tmp/controller-image.tar
-          cd config/manager && kustomize edit set image controller=controller:latest && cd -
+          cd config/manager && kustomize edit set image controller=project/controller:latest && cd -
           kubectl apply --server-side -k config/default
       - run: |
           kubectl get deployment.apps/project-controller-manager -n project-system -o yaml
