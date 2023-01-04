@@ -81,12 +81,12 @@ jobs:
             --version v1.10.1 \
             --set installCRDs=true     
       - run: |
-          k3d image import --cluster e2e /tmp/controller-image.tar --trace --verbose
+          k3d image import --cluster e2e /tmp/controller-image.tar
           kubectl apply --server-side -k config/default
       - run: |
           for w in deployment.apps/project-controller-manager; do
-              kubectl rollout status $w -n project-system --timeout=2m \
-              || (kubectl logs -n project-system $w --tail -1; kubectl get events -n project-system; false);
+              kubectl rollout status $w -n project-system --timeout=10s \
+              || (kubectl get events -n project-system; kubectl logs -n project-system $w --tail -1; false);
           done
       - uses: jaxxstorm/action-install-gh-release@v1
         with:
