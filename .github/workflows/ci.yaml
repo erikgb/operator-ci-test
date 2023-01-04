@@ -35,7 +35,22 @@ jobs:
             Changed files: ${{ steps.verify-changed-files.outputs.changed_files }}\
             \nPlease run 'make generate-all' locally and commit the changes"
           echo -e "$errorMsg" && exit 1
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
+      - uses: docker/setup-qemu-action@v2
+      - uses: docker/setup-buildx-action@v2
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: false
+          tags: controller:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
   e2e-test:
+    needs: build-image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
@@ -47,6 +62,8 @@ jobs:
       - run: |
           kubectl cluster-info
           kubectl version --output=yaml
+      - run: |
+          k3d image import --cluster e2e controller:latest
       - uses: jaxxstorm/action-install-gh-release@v1
         with:
           repo: kudobuilder/kuttl
@@ -56,3 +73,4 @@ jobs:
           kubectl kuttl version
       - run: |
           kubectl kuttl test --config kuttl-test.yaml
+ 
