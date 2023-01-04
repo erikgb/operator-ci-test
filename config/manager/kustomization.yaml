@@ -4,7 +4,7 @@ generatorOptions:
   disableNameSuffixHash: true
 images:
 - name: controller
-  newName: project/controller
-  newTag: latest
+  newName: ghcr.io/erikgb/operator-ci-test
+  newTag: 0.0.1 # x-release-please-version
 resources:
 - manager.yaml
